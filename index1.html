@@ -10,15 +10,22 @@
     <div class="alert-box" id="alert">알림창 
         <button onclick="document.getElementById('alert').style.display='none';">닫기</button>
         <!-- but 이렇게 쓰면 너무 지저분함-->
+
+        <!-- function사용하면 onclick="closeBtn()"-->
+
     </div>
     <button onclick="openBtn()">버튼</button>
-    <!-- function으로 간결하게/ 재사용에도 용이하다 -->
+    <!-- function으로 간결하게 작성, 재사용에도 용이하다 -->
 
 
 <script>
 
     function openBtn(){
         document.getElementById('alert').style.display='block';
+    }
+
+    function closeBtn(){
+        document.getElementById('alert').style.display='none';
     }
 
 </script>
