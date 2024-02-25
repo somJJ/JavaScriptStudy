@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1 id="hello">안녕하세요</h1>
+    <h1 id="hi">JS 초보</h1>
+
+    <script>
+        //html안에 자바스크립트 사용
+         //html안에 작성한 자바스크립트는 화면이 뜰 때 마다 실행된다
+        document.getElementById('hello').innerHTML = '안녕';
+        //html문서(~~의).html요소를가져와라 hello라는 아이디의. 내부html <= 안녕으로 바꾼다
+        document.getElementById('hello').style.color = 'blue';
+        //document.getElementById('??').?? = '??';
+        // ??바꿀요소 id ?? 무엇을  ?? 어떻게
+        document.getElementById('hi').innerHTML = 'JS 고수';
+
+        //안녕하세요 폰트사이즈 16px로 줄이기
+        document.getElementById('hello').style.fontSize='16px';
+
+    </script>
+
+</body>
+</html>
