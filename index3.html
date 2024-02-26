@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+    <div class="alert-box" id="alert">
+        <p class="title">알림창</p>
+    </div>
+
+    <button onclick="btnClick('아이디를 입력하세요.')">버튼1</button>
+    <button onclick="btnClick('비밀번호를 입력하세요.')">버튼2</button>
+
+<script>
+
+    //클래스명은 id와 다르게 중복이 가능 함
+    //따라서 사용할 때 뒤에 인덱스(몇번째 html요소인지)를 붙여줘야 함
+
+    function btnClick(alertText){
+        document.getElementById('alert').style.display='block';
+        document.getElementsByClassName('title')[0].innerHTML=alertText;
+    }
+
+
+</script>
+
+</body>
+</html>
