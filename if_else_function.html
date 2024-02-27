@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>homework</title>
+    <script
+        src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <h1 id="hello">과제</h1>
+    <p>태조 이성계가 태어난 년도는?</p>
+    <input type="text" id="answer">
+    <button id="send-answer">제출</button>
+
+
+
+    <script>
+        var count = 0;
+
+        $('#send-answer').on('click', function(){
+            count++;
+            if($('#answer').val()==1335){
+                alert('정답입니다.')
+            }
+            else if(count>=3){
+                alert('sutpid')
+            }
+        });
+
+        function threeAndSixGame(num){
+            
+            if(num%3==0){
+                console.log('clap!');
+            }
+            else{
+                console.log(num);
+            }
+            
+        }
+
+
+        function tasgUp(num){
+            if(num%3==0){
+
+                if(num%9==0){
+                console.log('clap! clap!');
+                }
+                else{
+                console.log('clap!');
+                }
+            }
+            else{
+                console.log(num);
+            }
+        }
+      
+
+        function passScore(score1, score2){
+            if(score1+score2>=120 && score1>=40 && score2>=40){
+                console.log('합격')
+            }
+            else{
+                console.log('불합격')
+            }
+        }
+
+        function passScore2(a, b){
+            if ( a < 40 || b < 40 ) {
+                 console.log('불합격')
+        } else if (a + b >= 120) {
+                 console.log('합격')
+         } else {
+             console.log('불합격')
+            }
+         }
+
+
+         var deposit = 60000;
+         var depositInt = 0;
+         if(deposit>=50000){
+            var depositInt = deposit*1.2*1.2;
+         }
+         else{
+            var depositInt = deposit*1.15*1.15;
+         }
+
+         console.log(depositInt);
+         
+
+         var first = 360;
+
+         var total = first+(first*2/3)+(first*2/3*2/3);
+         console.log(total);
+
+
+    </script>
+
+</body>
+</html>
