@@ -40,6 +40,7 @@
 
     <script>
 
+        //정규식
         console.log(/\S+@\S+\.\S+/.test('aaa@bbb.com'));
      
         document.getElementById('idVal').addEventListener('input', function(){
@@ -51,10 +52,7 @@
             console.log('change 태그 체크');
         });
 
-
-
-
-
+        //로그인 모달창 아이디 비밀번호 검증
         $('form').on('submit', function(e){
             if(document.getElementById('idVal').value==''){
                 alert('아이디를 입력하시오.')
@@ -95,76 +93,7 @@
         </div>
       </nav> 
 
-      <script>
-
-        // 변수를 사용하는 이유
-        // 1. 길고 복잡한 자료 저장 가능
-        // 2. 특정 값을 기억하게 만들기 위해
-
-        // var let const 차이
-        // var 변수 : 범위 function
-        // let 변수 : 재선언이 불가능하다. 범위 {}
-        // const 변수 : 재선언과 재할당이 불가능하다. 변하면 안되는 값, 상수를 보관하기에 좋음. 범위 {}
-
-
-        // var clickNum=0;
-        // document.getElementById('darkBtn').addEventListener('click', function(){
-        //     clickNum++;
-        //     if(clickNum%2==0){
-        //     document.getElementById('darkBtn').innerHTML='dark';
-        //     }
-        //     else{
-        //     document.getElementById('darkBtn').innerHTML='light';
-        //     }
-        // });
-
-
-        //console.log(vat(55555));
-        //콘솔 창 검정 글씨는 문자
-            
-        function vat(a){
-            //소수점 반올림하는 법, But toFixed쓰면 문자로 변환된다
-            var num = (a * 1.1).toFixed(1);
-            //다시 숫자로 변환
-            return parseFloat(num);
-        }
-
-        //console.log(ms(2,10));
-        function ms(min,sec){
-            total=(min*60+sec)*1000;
-            return total;
-        }
-
-        //console.log(sale(10,true))
-        function sale(price, firstBuy){
-            var totalPrice;
-            if(firstBuy){
-                totalPrice=0.9*price-1.5;
-            }
-            else{
-                totalPrice=0.9*price;
-            }
-            return parseFloat(totalPrice.toFixed(2));
-        }
-
-
-        var count = 0;
-        $('.badge').on('click', function(){
-            count +=1;
-            if(count%2==1){
-                $('.badge').html('Light');
-                $('.bc1').addClass('dark');
-            }
-            else{
-                $('.badge').html('Dark');
-                $('.bc1').removeClass('dark');
-            }
-
-        });
-
-    
-
-      </script>
+      
 
     
       <ul class="list-group">
@@ -241,7 +170,7 @@
             // });
 
 
-                //div박스 스크롤 내리기
+            //div박스 스크롤 내리기
 
             $('.divbox1').on('scroll', function(){
             // div박스는 scrollTop 이용해야 내린 높이 알 수 있음
@@ -261,6 +190,7 @@
         });
 
 
+        //버튼으로 사진 넘기기 기능 (슬라이드 박스 만들기)
         var slideNum=1;
         $('.slide-1').on('click', function(){
             $('.slide-container').css('transform', 'translateX(0vw)');
@@ -312,7 +242,7 @@
            
         });
 
-        //5초 후에 div 숨기기
+        //5초 후에 div 숨기는 기능
         //다른 곳에서 만든 함수를 콜백함수 자리에 집어넣을 수 있다
         // setTimeout(function(){
         //     $('.alert').hide();
@@ -345,17 +275,121 @@
         })
 
 
-       
+        //메뉴아이콘 누르면 nabvar 보이는 기능 (켜져있는 상태에서 클릭하면 사라지게 하기위해 toggle 사용)
+         /*document.getElementsByClassName('navbar-toggler')[0].addEventListener('click', function(){
+            //list-group 클래스명 가진 요소에게 show라는 클래스명도 추가하기
+            //classList.add 클래스명 추가
+            //toggle로 하면 있으면 제거, 없으면 추가가 됨
+            document.getElementsByClassName('list-group')[0].classList.toggle('show');
 
-
+        })
+        */
         document.querySelector('.navbar-toggler').addEventListener('click', function(){
             document.querySelector('.list-group').classList.toggle('show');
 
         })
 
 
+        //검은 배경 누르면 모달창 닫는 기능 
+        $('.black-bg').on('click', function(e){
+            
+            //console.log(e.target);
+            //function() 괄호안에 e 넣음으로써 사용할 수 있는 이벤트 함수
+            // e.target; //유저가 실제로 클릭한 것
+            // // this와 같음(이런식으로 사용했을 경우에 한해)
+            // e.currentTarget; //이벤트리스너 달린 곳
+            // e.preventDefault; //이벤트 기본동작 막아 줌
+            // e.stopPropagation; //상위요소로의 이벤트 버블링을 막아 줌
+
+            //if문 없이 그냥 삭제되는 코드 작성 시, 이벤트 버블링 현상때문에 흰 창 클릭해도 꺼지는 문제가 발생
+            //e.target 사용하여 실제로 클릭한 것이 black-bg일 때 모달 창 닫게끔 코드 작성
+            //jQuery 코드로 e.target 비교하려면 $().is($())와 같은 방법 이용하는게 안전하다
+            if(e.target == document.querySelector('.black-bg')){
+                //$('.black-bg').removeClass('showModal'); 
+                document.querySelector('.black-bg').classList.remove('showModal');
+            }
+            
+        });
+
+
+
+
+
+
+    // 변수를 사용하는 이유
+    // 1. 길고 복잡한 자료 저장 가능
+    // 2. 특정 값을 기억하게 만들기 위해
+
+    // var let const 차이
+    // var 변수 : 범위 function
+    // let 변수 : 재선언이 불가능하다. 범위 {}
+    // const 변수 : 재선언과 재할당이 불가능하다. 변하면 안되는 값, 상수를 보관하기에 좋음. 범위 {}
+
+
+    // var clickNum=0;
+    // document.getElementById('darkBtn').addEventListener('click', function(){
+    //     clickNum++;
+    //     if(clickNum%2==0){
+    //     document.getElementById('darkBtn').innerHTML='dark';
+    //     }
+    //     else{
+    //     document.getElementById('darkBtn').innerHTML='light';
+    //     }
+    // });
+
+
+    //console.log(vat(55555));
+    //콘솔 창의 검정 글씨는 문자이다
+        
+    
+    //함수 사용 연습
+    function vat(a){
+        //소수점 반올림하는 법, But toFixed쓰면 문자로 변환된다
+        var num = (a * 1.1).toFixed(1);
+        //다시 숫자로 변환
+        return parseFloat(num);
+    }
+
+    //console.log(ms(2,10));
+    function ms(min,sec){
+        total=(min*60+sec)*1000;
+        return total;
+    }
+
+    //console.log(sale(10,true))
+    function sale(price, firstBuy){
+        var totalPrice;
+        if(firstBuy){
+            totalPrice=0.9*price-1.5;
+        }
+        else{
+            totalPrice=0.9*price;
+        }
+        return parseFloat(totalPrice.toFixed(2));
+    }
+
+
+    var count = 0;
+    $('.badge').on('click', function(){
+        count +=1;
+        if(count%2==1){
+            $('.badge').html('Light');
+            $('.bc1').addClass('dark');
+        }
+        else{
+            $('.badge').html('Dark');
+            $('.bc1').removeClass('dark');
+        }
+
+    });
+
+
+
 
     </script>
+
+
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

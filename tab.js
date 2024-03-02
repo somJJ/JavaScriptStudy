@@ -38,8 +38,6 @@
 
 
 
-//querySelectorAll 저장해서 사용해보려고 코드 바꿈
-
 // $('.tab-button').eq(0).on('click', function(){
 //     console.log('0button');
 //     divContentfc(0);
@@ -55,12 +53,24 @@
 //     divContentfc(2);
 // });
 
-for(let i=0;i<$('.tab-button').length;i++){
-    $('.tab-button').eq(i).on('click', function(){
-        console.log('0button');
-        divContentfc(i);
-    });
-}
+
+
+
+
+// for(let i=0;i<$('.tab-button').length;i++){
+//     $('.tab-button').eq(i).on('click', function(){
+//         divContentfc(i);
+//     });
+// }
+
+
+//위의 코드를 list 이벤트 리스너 눌렀을 때 동작하게 끔 코드 바꿈
+//dataset 이용하여 반복문 사용하지 않고 작성함
+// html 태그에 몰래 정보 숨기는 것 가능 : data-자료이름="값"
+// 숨겼던 자료 출력은 셀렉터.dataset.자료이름
+$('.list').click(function(e){
+    divContentfc(e.target.dataset.id);
+ });
 
 function divContentfc(num){
     var tabBtn = document.querySelectorAll('.tab-button');
@@ -78,3 +88,29 @@ function divContentfc(num){
     document.querySelectorAll('.tab-content')[num].classList.add('show');
 }
 
+
+
+//위의 코드를 e.target 변수에 저장해서 사용하는 것으로 바꿔서 짜봄
+/*
+$('.list').click(function(e){
+    var clickBtn= e.target;
+    divContentfc2(clickBtn);
+ });
+ 
+ 
+ function divContentfc2(btnName){
+     var tabBtn = document.querySelectorAll('.tab-button');
+     for(i=0;i<tabBtn.length;i++){
+         tabBtn[i].classList.remove('orange');
+     }
+ 
+     btnName.classList.add('orange');
+ 
+     var divContent = document.querySelectorAll('.tab-content');
+     for(i=0;i<divContent.length;i++){
+         divContent[i].classList.remove('show');
+     }
+ 
+     btnName.classList.add('show');
+ }
+*/
