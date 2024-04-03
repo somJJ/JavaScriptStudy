@@ -1,99 +1,253 @@
 <!doctype html>
 <html lang="en">
-  <head>
-   
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-   
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link href="main.css" rel="stylesheet">
-   
-    <script
-        src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-        crossorigin="anonymous"></script>
-    <title>JavaScriptStudy</title>
-  </head>
-  <body>
-    
+<head>
 
-    <style>
-        ul.list {
-          list-style-type: none;
-          margin: 0;
-          padding: 0;
-          border-bottom: 1px solid #ccc;
-        }
-        ul.list::after {
-          content: '';
-          display: block;
-          clear: both;
-        }
-        .tab-button {
-          display: block;
-          padding: 10px 20px 10px 20px;
-          float: left;
-          margin-right: -1px;
-          margin-bottom: -1px;
-          color: grey;
-          text-decoration: none;
-          cursor: pointer;
-        }
-        .orange {
-          border-top: 2px solid orange;
-          border-right: 1px solid #ccc;
-          border-bottom: 1px solid white;
-          border-left: 1px solid #ccc;
-          color: black;
-          margin-top: -2px;
-        }
-        .tab-content {
-          display: none;
-          padding: 10px;
-        }
-        .show {
-          display: block;
-        }
-      </style>
-
-      
-    <div class="container mt-5">
-        <ul class="list">
-          <li class="tab-button" data-id="0">Products</li>
-          <!--data id로 공개하지 않고 값 설정 가능-->
-          <li class="tab-button orange" data-id="1">Information</li>
-          <li class="tab-button" data-id="2">Shipping</li>
-          <li class="tab-button" data-id="3">mypage</li>
-        </ul>
-        <div class="tab-content">
-          <p>상품설명입니다. Product</p>
-        </div>
-        <div class="tab-content show">
-          <p>스펙설명입니다. Information</p>
-        </div>
-        <div class="tab-content">
-          <p>배송정보입니다. Shipping</p>
-        </div>
-        <div class="tab-content">
-          <p>마이페이지입니다. MyPage</p>
-        </div>
-      </div> 
-
-    
-      <div class="container mt-3">
-        <div class="card p-3">
-          상품명 / 가격
-        </div>
-      </div>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link href="main.css" rel="stylesheet">
 
-    <script src="tab.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <title>JavaScriptStudy</title>
+</head>
+
+<body>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <style>
+    ul.list {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      border-bottom: 1px solid #ccc;
+    }
 
-    
-  </body>
+    ul.list::after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    .tab-button {
+      display: block;
+      padding: 10px 20px 10px 20px;
+      float: left;
+      margin-right: -1px;
+      margin-bottom: -1px;
+      color: grey;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .orange {
+      border-top: 2px solid orange;
+      border-right: 1px solid #ccc;
+      border-bottom: 1px solid white;
+      border-left: 1px solid #ccc;
+      color: black;
+      margin-top: -2px;
+    }
+
+    .tab-content {
+      display: none;
+      padding: 10px;
+    }
+
+    .selHide {
+      display: none;
+    }
+
+    .show {
+      display: block;
+    }
+  </style>
+
+
+  <div class="container mt-3">
+    <div class="card p-3">
+      <span class="carName">상품명</span>
+      <span class="carPrice">가격</span>
+    </div>
+  </div>
+
+  <script>
+    //array와 object의 차이점 array는 자료를 순서대로 저장, object는 이름으로 구분
+    //array는 자료간 정렬 가능, 중간에 자르기 등 sort, slice와 같은 함수 사용해 여러 작업이 가능함
+
+    //array 자료형
+    var car = ['소나타', 50000, 'white'];
+    //car[1]=30000;
+    //console.log(car[1]);
+
+    //object 자료형 (무조건 이름key:값value 형태로 저장해야 함)
+    var car2 = { name: '소나타', price: [50000, 3000, 4000] };
+    //car2.price = 60000;
+    //console.log(car2.price);
+
+    document.querySelector('.carName').innerHTML = car2['name'];
+    document.querySelector('.carPrice').innerHTML = car2.price[0];
+  </script>
+
+
+  <form class="container my-5 form-group">
+    <p>상품선택</p> <select class="form-select mt-2">
+      <option value="hat">모자</option>
+      <option value="shirts">셔츠</option>
+      <option value="pants">바지</option>
+    </select>
+    <select class="form-select mt-2 selHide">
+      <option>85</option>
+      <option>90</option>
+      <option>95</option>
+      <option>100</option>
+    </select>
+  </form>
+
+
+  <div id="test">
+    <h4>Welcome</h4>
+
+  </div>
+
+
+  <script>
+
+    // 자바스크립트로 html 생성하는 방법 1
+    // var a =document.createElement('p');
+    // a.innerHTML = '안녕';
+    // document.querySelector('#test').appendChild(a);
+
+    // 자바스크립트로 html 생성하는 방법 2
+    // var templet = '<p>Hello</p>';
+    // document.querySelector('#test').insertAdjacentHTML('beforeend', templet);
+
+    // jQuery 버전
+    //$('#test').append(templet);
+
+
+
+
+
+    // 상품선택에서 셔츠 선택하면 사이즈 선택창 나타나게 하는 기능 바닐라자스
+    // document.querySelectorAll('.form-group select')[0].addEventListener('input', function () {
+
+    //   if (document.querySelectorAll('.form-group select')[0].value == 'shirts') {
+
+    //     document.querySelectorAll('.form-group select')[1].classList.remove('selHide');
+    //   }
+    //   else {
+    //     document.querySelectorAll('.form-group select')[1].classList.add('selHide');
+    //   }
+    // });
+
+    //상품선택에서 셔츠 선택하면 사이즈 선택창 나타나게 하는 기능 jQuery 하드 코딩
+    // $('.form-select').eq(0).on('input', function (e) {
+    //   // this.value 써도 똑같음
+    //   var value = e.currentTarget.value;
+    //   console.log(value);
+    //   if (value == 'shirts') {
+    //     var templet=`<option>85</option>
+    //   <option>90</option>
+    //   <option>95</option>
+    //   <option>100</option>`;
+    //     $('.form-select').eq(1).removeClass('selHide');
+    //     $('.form-select').eq(1).html('');
+    //     $('.form-select').eq(1).append(templet);
+    //   }
+    //   else if(value == 'pants'){
+    //     $('.form-select').eq(1).removeClass('selHide');
+    //     var templet =`<option>26</option>
+    //     <option>27</option>`;
+    //     $('.form-select').eq(1).html('');
+    //     $('.form-select').eq(1).append(templet);
+
+    //   }
+    //   else {
+    //     $('.form-select').eq(1).addClass('selHide');
+    //   }
+    // })
+
+
+    //데이터 받아와서 html 만들기
+
+    var pants = [28, 30, 32];
+    var shirts = [80, 85, 90, 95, 100];
+    //obj for in 함수 사용해서 반복 가능
+    // var obj = {name: 'kim', age: 20};
+    // for(var key in obj){
+    //   console.log(obj[key]);
+    // }
+
+    $('.form-select').eq(0).on('input', function (e) {  
+      var value = e.currentTarget.value;
+      if (value == 'shirts') {     
+        $('.form-select').eq(1).removeClass('selHide');
+        $('.form-select').eq(1).html('');
+
+        // (주의) arrow function 사용 시 함수 안의 this 값이 달라질 수 있다
+        shirts.forEach((data)=>{
+          $('.form-select').eq(1).append(`<option>${data}</option>`);
+        });
+        
+      }
+      else if (value == 'pants') {
+        $('.form-select').eq(1).removeClass('selHide');
+        $('.form-select').eq(1).html('');
+        // array에 붙일 수 있는 forEach 반복문
+        // forEach 안에 파라미터 2개 생성가능
+        // 첫번째는 array 안의 데이터, 두번째는 0부터 1씩 증가하는 정수
+        pants.forEach(function(data){
+          $('.form-select').eq(1).append(`<option>${data}</option>`)
+        });
+
+      }
+      else {
+        $('.form-select').eq(1).addClass('selHide');
+      }
+    })
+
+
+  </script>
+
+  <div class="container mt-5">
+    <ul class="list">
+      <li class="tab-button" data-id="0">Products</li>
+      <!--data id로 공개하지 않고 값 설정 가능-->
+      <li class="tab-button orange" data-id="1">Information</li>
+      <li class="tab-button" data-id="2">Shipping</li>
+      <li class="tab-button" data-id="3">mypage</li>
+    </ul>
+    <div class="tab-content">
+      <p>상품설명입니다. Product</p>
+    </div>
+    <div class="tab-content show">
+      <p>스펙설명입니다. Information</p>
+    </div>
+    <div class="tab-content">
+      <p>배송정보입니다. Shipping</p>
+    </div>
+    <div class="tab-content">
+      <p>마이페이지입니다. MyPage</p>
+    </div>
+  </div>
+
+
+
+
+
+  <script src="tab.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+
+</body>
+
 </html>

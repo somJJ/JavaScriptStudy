@@ -81,6 +81,7 @@ function divContentfc(num){
     document.querySelectorAll('.tab-button')[num].classList.add('orange');
 
     var divContent = document.querySelectorAll('.tab-content');
+    console.log(divContent);
     for(i=0;i<divContent.length;i++){
         divContent[i].classList.remove('show');
     }
