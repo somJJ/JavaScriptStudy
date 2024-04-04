@@ -18,63 +18,52 @@
 
 <body>
 
-    <div class="card-group container">
-        <div class="card"> <img src="https://via.placeholder.com/600">
-            <div class="card-body">
-                <h5 class="cardTitle">Card title1</h5>
-                <p class="cardPrice">가격 : 70000</p>
-                <button class="btn btn-danger">주문하기1</button>
-            </div>
-        </div>
-        <div class="card">
-            <img src="https://via.placeholder.com/600">
-            <div class="card-body">
-                <h5 class="cardTitle">Card title2</h5>
-                <p class="cardPrice">가격 : 70000</p>
-                <button class="btn btn-danger">주문하기2</button>
-            </div>
-        </div>
-        <div class="card">
-            <img src="https://via.placeholder.com/600">
-            <div class="card-body">
-                <h5 class="cardTitle">Card title3</h5>
-                <p class="cardPrice">가격 : 70000</p> <button class="btn btn-danger">주문하기3</button>
-            </div>
+    <div class="container">
+        <div class="row">
+
+
+            <!-- <div class="col-sm-4">
+                <img src="https://via.placeholder.com/600" class="w-100">
+                <h5>Card title</h5>
+                <p>가격 : 70000</p>
+            </div> -->
+
+
+
+
+
         </div>
     </div>
 
-    <script> 
+    <script>
 
 
 
-    var products = [{ id: 0, price: 200000, title: 'goggles', img:'gogglesPic'}, 
-    { id: 1, price: 70000, title: 'Fleece' , img:'FleecePic' }, 
-    { id: 2, price: 50000, title: 'Detective', img:'DetectivePic'}]; 
+        var products = [{ id: 0, price: 200000, title: 'goggles', img: 'gogglesPic' },
+        { id: 1, price: 70000, title: 'Fleece', img: 'FleecePic' },
+        { id: 2, price: 50000, title: 'Detective', img: 'DetectivePic' }];
 
-    //document.querySelectorAll('.card-body h5')[0]
-    //클래스명이 card-body인 것의 자식요소 h5중 첫번째 요소를 찾음
+        for(var key in products){
+            var templet = `<div class="col-sm-4">
+                <img src="${products[key].img}.jpg" class="w-100">
+                <h5>${products[key].title}</h5>
+                <p>가격 : ${products[key].price}</p>
+                </div>`;
+            document.querySelector('.row').insertAdjacentHTML('beforeend',templet);
+        }
 
-    for(i=0;i<3;i++){
-        document.querySelectorAll('.card-body h5')[i].innerHTML=products[i].title;
-        document.querySelectorAll('.cardPrice')[i].innerHTML=products[i].price+'won';
-        var img = document.querySelectorAll('.card > img')[i];
-        img.src= products[i].img+'.jpg';
+        //https://developer.mozilla.org/ko/docs/Web/API/Element/insertAdjacentHTML
 
-    }
-
-    //문자 중간에 변수 쉽게 넣기
-    // '문자' + '문자'
-    // `문자${변수}문자`
-
-
-    
     </script>
+
+
+
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous">
-    </script>
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+        </script>
 
 
 </body>
