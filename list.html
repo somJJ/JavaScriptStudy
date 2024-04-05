@@ -35,6 +35,26 @@
         </div>
     </div>
 
+    <div class="container">
+        <button class="btn btn-danger" id="more">더보기</button>
+    </div>
+
+    <div class="container">
+        <button class="btn btn-danger" id="price">가격순정렬</button>
+    </div>
+
+    <div class="container">
+        <button class="btn btn-danger" id="namedesc">상품명 내림차순 정렬</button>
+    </div>
+
+    <div class="container">
+        <button class="btn btn-danger" id="underprice">6만원 이하 상품 보기</button>
+    </div>
+
+    <div class="container">
+        <button class="btn btn-danger" id="cartPage">장바구니 보기</button>
+    </div>
+
     <script>
 
 
@@ -43,16 +63,301 @@
         { id: 1, price: 70000, title: 'Fleece', img: 'FleecePic' },
         { id: 2, price: 50000, title: 'Detective', img: 'DetectivePic' }];
 
-        for(var key in products){
+        //product 안의 데이터 가격순 정렬
+        //   products.sort(function(a,b){
+        //     if(a.price>b.price){
+        //         return 1;
+        //     }
+        //     else if(a.price<b.price){
+        //         return -1;
+        //     }
+        //     else{
+        //         return 0;
+        //     }
+        // });
+
+
+        //array 정렬
+        //sort는 문자 정렬
+        //sort(function(a,b){return a-b}) 하면 숫자 오름차순 정렬
+        // return a-b가 양수면 a를 오른쪽으로 음수면 b를 오른쪽으로
+        //https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+
+        var arr1 = [7, 3, 5, 2, 40];
+        arr1.sort(function (a, b) {
+            return a - b;
+        });
+
+        //문자 내림차순 정렬 해보기
+        var arr2 = ['a', 'c', 'c', 'd', 'f'];
+
+        arr2.sort(function (a, b) {
+            if (a > b) {
+                return -1;
+            }
+            if (a < b) {
+                return 1;
+            }
+            else {
+                return 0;
+            }
+        });
+
+        //array 자료 원하는 것만 .filter()
+        //sort는 원본 변형O, filter는 원본 변형 X
+        var newarr1 = arr1.filter(function (a) {
+            return a < 6
+        });
+
+
+        //array 자료 전부 변형하려면 .map()
+        var newarr2 = arr1.map(function (a) {
+            return a * 4;
+        });
+
+
+
+        //기존 배열 변경없이 복제해서 sort하는 법
+        var newpro = products.slice().sort(function (a, b) {
+            if (a.price > b.price) {
+                return 1;
+            }
+            else if (a.price < b.price) {
+                return -1;
+            }
+            else {
+                return 0;
+            }
+        });
+
+
+
+
+
+        //상품 3개 출력하는 html코드 만들기
+        for (var key in products) {
             var templet = `<div class="col-sm-4">
                 <img src="${products[key].img}.jpg" class="w-100">
                 <h5>${products[key].title}</h5>
                 <p>가격 : ${products[key].price}</p>
+                <button class="buy">구매</button>
                 </div>`;
-            document.querySelector('.row').insertAdjacentHTML('beforeend',templet);
+            document.querySelector('.row').insertAdjacentHTML('beforeend', templet);
         }
 
         //https://developer.mozilla.org/ko/docs/Web/API/Element/insertAdjacentHTML
+
+
+
+        //localStorage 문자와 숫자만 저장 가능
+        //저장
+        localStorage.setItem('이름', 'kim');
+        //출력 (콘솔창에 입력해보기)
+        localStorage.getItem('이름');
+        //삭제
+        localStorage.removeItem('이름');
+
+        //localStorage에 array, object 저장하려면 JSON 사용
+        var arrNum = [1, 2, 3];
+        //console.log(arrNum);
+        var newArrNum = JSON.stringify(arrNum);
+        //console.log(newArrNum);
+        localStorage.setItem('num', newArrNum);
+        var getData = localStorage.getItem('num');
+        //console.log(JSON.parse(getData));
+
+        //구매버튼 누르면 누른 상품명 localStorage에 저장하기 (array 자료 형식으로)
+        document.querySelectorAll('.buy')[0].addEventListener('click', function (e) {
+            console.log(e.currentTarget.parentNode);
+            var clickItem = e.currentTarget.parentNode.querySelector('h5').innerHTML;
+            var clickItemArr = [clickItem];
+
+            if (localStorage.getItem('cart')) {
+                var getItem = JSON.parse(localStorage.getItem('cart'));
+                var getData = getItem.concat(clickItemArr);
+                var clickItemArrJSON = JSON.stringify(getData);
+                localStorage.removeItem('cart');
+                localStorage.setItem('cart', clickItemArrJSON);
+            }
+            else {
+
+                var clickItemArrJSON = JSON.stringify(clickItemArr);
+                localStorage.setItem('cart', clickItemArrJSON);
+                localCheck += 1;
+
+            }
+        });
+
+        document.querySelectorAll('.buy')[1].addEventListener('click', function (e) {
+            console.log(e.currentTarget.parentNode);
+            var clickItem = e.currentTarget.parentNode.querySelector('h5').innerHTML;
+            var clickItemArr = [clickItem];
+
+            if (localStorage.getItem('cart')) {
+                var getItem = JSON.parse(localStorage.getItem('cart'));
+                var getData = getItem.concat(clickItemArr);
+                var clickItemArrJSON = JSON.stringify(getData);
+                localStorage.removeItem('cart');
+                localStorage.setItem('cart', clickItemArrJSON);
+            }
+            else {
+
+                var clickItemArrJSON = JSON.stringify(clickItemArr);
+                localStorage.setItem('cart', clickItemArrJSON);
+                localCheck += 1;
+
+            }
+        });
+
+        document.querySelectorAll('.buy')[2].addEventListener('click', function (e) {
+            console.log(e.currentTarget.parentNode);
+            var clickItem = e.currentTarget.parentNode.querySelector('h5').innerHTML;
+            var clickItemArr = [clickItem];
+
+            if (localStorage.getItem('cart')) {
+                var getItem = JSON.parse(localStorage.getItem('cart'));
+                var getData = getItem.concat(clickItemArr);
+                var clickItemArrJSON = JSON.stringify(getData);
+                localStorage.removeItem('cart');
+                localStorage.setItem('cart', clickItemArrJSON);
+            }
+            else {
+
+                var clickItemArrJSON = JSON.stringify(clickItemArr);
+                localStorage.setItem('cart', clickItemArrJSON);
+                localCheck += 1;
+
+            }
+        });
+
+
+         //cart.html 방문시 localStorage에 저장된 상품명들 다 보여주기
+        document.querySelector('#cartPage').addEventListener('click',function(){
+            location.href='cart.html';
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+        //배열이 오름차순 정렬되어있는지 확인하는 함수
+        function test(products) {
+            for (i = 1; i < products.length; i++) {
+                if (products[i - 1].price > products[i].price) {
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        document.querySelector('#price').addEventListener('click', function () {
+            //만약 products의 데이터가 오름차순 정렬이 되어있지 않다면
+            if (!test(products)) {
+                //기존 products html 지우고 product 안의 데이터 가격순 정렬 후 새로 출력
+                document.querySelector('.row').innerHTML = '';
+                products.sort(function (a, b) {
+                    if (a.price > b.price) {
+                        return 1;
+                    }
+                    else if (a.price < b.price) {
+                        return -1;
+                    }
+                    else {
+                        return 0;
+                    }
+                });
+                more(products);
+            }
+
+        });
+
+
+
+        //버튼 누르면 상품명 내림차순 정렬
+        document.querySelector('#namedesc').addEventListener('click', function () {
+            document.querySelector('.row').innerHTML = '';
+            products.sort(function (a, b) {
+                if (a.title > b.title) {
+                    return -1
+                }
+                else if (a.title < b.title) {
+                    return 1
+                }
+                else {
+                    return 0
+                }
+            })
+            more(products);
+        });
+
+        //버튼 누르면 6만원 이하 상품만 보여주기
+        document.querySelector('#underprice').addEventListener('click', function () {
+            document.querySelector('.row').innerHTML = '';
+            //arrow function으로 return 없이 한줄로 가능
+            var underPrice = products.filter((a) => a.price <= 60000);
+            more(underPrice);
+
+        });
+
+
+
+
+
+
+        //더보기 버튼 누르면 상품 3개 가져와서 출력하기
+
+        var btnClickNum = 0;
+        document.querySelector('#more').addEventListener('click', function () {
+
+            if (btnClickNum == 0) {
+                $.get('https://codingapple1.github.io/js/more1.json').done(function (data) {
+                    more(data);
+                }).fail(function () {
+                    console.log('get요청 실패')
+                });
+                btnClickNum++;
+            }
+            else {
+                $.get('https://codingapple1.github.io/js/more2.json').done(function (data) {
+                    console.log(data);
+                    more(data);
+                }).fail(function () {
+                    console.log('get요청 실패')
+                });
+                document.querySelector('#more').classList.add('hide');
+            }
+
+
+
+        });
+
+        function more(data) {
+            for (var key in data) {
+                var templet = `<div class="col-sm-4">
+                <img src="${products[key].img}.jpg" class="w-100">
+                <h5>${data[key].title}</h5>
+                <p>가격 : ${data[key].price}</p>
+                </div>`;
+                document.querySelector('.row').insertAdjacentHTML('beforeend', templet);
+            }
+
+
+        }
+
+
+
+
+
+
+
+
 
     </script>
 
