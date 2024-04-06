@@ -166,7 +166,11 @@
         var getData = localStorage.getItem('num');
         //console.log(JSON.parse(getData));
 
+
+
+
         //구매버튼 누르면 누른 상품명 localStorage에 저장하기 (array 자료 형식으로)
+        //자바스크립트로 짤 때, 각각 할당하기 싫으면 이벤트 버블링 이용하기
         document.querySelectorAll('.buy')[0].addEventListener('click', function (e) {
             console.log(e.currentTarget.parentNode);
             var clickItem = e.currentTarget.parentNode.querySelector('h5').innerHTML;
@@ -229,16 +233,27 @@
 
             }
         });
+        //jQuery 사용해서 더 간결하게 하는 법
+        // $('.buy').click(function (e) {
+        //     var title = $(e.target).siblings('h5').text();
+        //     if (localStorage.getItem('cart') != null) {
+        //         var data = JSON.parse(localStorage.cart);
+        //         data.push(title);
+        //         localStorage.setItem('cart', JSON.stringify(data));
+        //     }
+        //     else {
+        //         localStorage.setItem('cart', JSON.stringify([title]))
+        //     }
+        // }
+        // );
 
 
-         //cart.html 방문시 localStorage에 저장된 상품명들 다 보여주기
-        document.querySelector('#cartPage').addEventListener('click',function(){
-            location.href='cart.html';
+
+
+        //cart.html 방문시 localStorage에 저장된 상품명들 다 보여주기
+        document.querySelector('#cartPage').addEventListener('click', function () {
+            location.href = 'cart.html';
         });
-
-
-
-
 
 
 
