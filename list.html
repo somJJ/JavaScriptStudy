@@ -178,9 +178,8 @@
 
             if (localStorage.getItem('cart')) {
                 var getItem = JSON.parse(localStorage.getItem('cart'));
-                var getData = getItem.concat(clickItemArr);
-                var clickItemArrJSON = JSON.stringify(getData);
-                localStorage.removeItem('cart');
+                getItem.push(clickItem);
+                var clickItemArrJSON = JSON.stringify(getItem);
                 localStorage.setItem('cart', clickItemArrJSON);
             }
             else {
@@ -201,7 +200,6 @@
                 var getItem = JSON.parse(localStorage.getItem('cart'));
                 var getData = getItem.concat(clickItemArr);
                 var clickItemArrJSON = JSON.stringify(getData);
-                localStorage.removeItem('cart');
                 localStorage.setItem('cart', clickItemArrJSON);
             }
             else {
@@ -222,7 +220,6 @@
                 var getItem = JSON.parse(localStorage.getItem('cart'));
                 var getData = getItem.concat(clickItemArr);
                 var clickItemArrJSON = JSON.stringify(getData);
-                localStorage.removeItem('cart');
                 localStorage.setItem('cart', clickItemArrJSON);
             }
             else {
@@ -246,6 +243,10 @@
         //     }
         // }
         // );
+
+
+
+        
 
 
 
