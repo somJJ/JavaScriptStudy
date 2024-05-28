@@ -13,71 +13,96 @@
 
     <script>
 
-        //this
-        //그냥 쓰거나 함수 안에서 쓰면 {window}
-        //함수나 변수를 전역공간에서 만들면 {window}보관소에 보관하기 떄문에
-        //주의할 점 arrow function: this 값을 함수 밖에 있던거 그대로 사용
-
-        //최상단에 쓰면 strict mode 시행
-        //'use strict';
-
-        //전역공간에서 this를 사용할 경우
-        console.log(this); //{window}
-
-        function thisfc() {
-            console.log(this); // {window}, strict mode+일반함수 내에서 쓰면 undefined
+        //arrow function 장점 
+        //1. 입출력 기계 만들 때 보기 쉬움
+        var fc = (a) => {
+            return a+10
         }
-
-        thisfc();
-
-        //오브젝트 안의 함수에서 this를 사용할 경우
-        var obj = { data: 'kim', fc: function(){
-            console.log(this);  //오브젝트 안의 함수에서 쓰면, 그 함수를 가지고 있는 오브젝트를 뜻함 
-        }}
-
-        obj.fc();
-
-        var obj1 = {
-            data: {
-                fc : function(){
-                    console.log(this);
-                }
-            }
-        }
-
-        obj1.data.fc();
-
-        //construct에서 this를 사용할 경우
-        function cs(){
-            this.name = 'kim';  //생성자 안에서 쓰면 새로 생성되는 오브젝트를 뜻함
-        }
+        //2. 파라미터 한개면 소괄호 생략 가능
+        //3. 코드 한줄이면 중괄호도 생략 가능
+        var fc1 = a => a+10 ;
         
-        var newobj = new cs();
-   
-        //이벤트리스너 안에서 this를 사용할 경우
-        document.querySelector('#button').addEventListener('click',function(){
-            console.log(this); //e.currentTarget과 같은 의미
-
-            //case1
-            var arr = [1,2,3];
-            arr.forEach(function(){
-                console.log(this);
-            });
-
+        [1,2,3,4].forEach(function(a){
+            console.log(a);
         });
 
-        //case2
-        var obj2 = {
-            name: ['kim', 'jeong', 'seo'],
-            fc: function(){
-                obj2.name.forEach(function(){
-                    console.log(this); //arrow function으로 바꾸면 외부this와 똑같은 값을 가져옴
-                })
+        //forEach arrow function 사용
+        [1,2,3,4].forEach(a=>console.log(a));
+    
+
+        var obj = {
+            fc : ()=>{
+                return this; //window가 나옴
             }
         }
 
-    obj2.fc();       
-    //그냥 일반 함수안에서 this쓰면 window 나옴 
+
+
+    //     //this
+    //     //그냥 쓰거나 함수 안에서 쓰면 {window}
+    //     //함수나 변수를 전역공간에서 만들면 {window}보관소에 보관하기 떄문에
+    //     //주의할 점 arrow function: this 값을 함수 밖에 있던거 그대로 사용
+
+    //     //최상단에 쓰면 strict mode 시행
+    //     //'use strict';
+
+    //     //전역공간에서 this를 사용할 경우
+    //     console.log(this); //{window}
+
+    //     function thisfc() {
+    //         console.log(this); // {window}, strict mode+일반함수 내에서 쓰면 undefined
+    //     }
+
+    //     thisfc();
+
+    //     //오브젝트 안의 함수에서 this를 사용할 경우
+    //     var obj = { data: 'kim', fc: function(){
+    //         console.log(this);  //오브젝트 안의 함수에서 쓰면, 그 함수를 가지고 있는 오브젝트를 뜻함 
+    //     }}
+
+    //     obj.fc();
+
+    //     var obj1 = {
+    //         data: {
+    //             fc : function(){
+    //                 console.log(this);
+    //             }
+    //         }
+    //     }
+
+    //     obj1.data.fc();
+
+    //     //construct에서 this를 사용할 경우
+    //     function cs(){
+    //         this.name = 'kim';  //생성자 안에서 쓰면 새로 생성되는 오브젝트를 뜻함
+    //     }
+        
+    //     var newobj = new cs();
+   
+    //     //이벤트리스너 안에서 this를 사용할 경우
+    //     document.querySelector('#button').addEventListener('click',function(){
+    //         console.log(this); //e.currentTarget과 같은 의미
+
+    //         //case1
+    //         var arr = [1,2,3];
+    //         arr.forEach(function(){
+    //             console.log(this);
+    //         });
+
+    //     });
+
+    //     //case2
+    //     var obj2 = {
+    //         name: ['kim', 'jeong', 'seo'],
+    //         fc: function(){
+    //             obj2.name.forEach(function(){
+    //                 console.log(this); //arrow function으로 바꾸면 외부this와 똑같은 값을 가져옴
+    //             })
+    //         }
+    //     }
+
+    // obj2.fc();       
+    // //그냥 일반 함수안에서 this쓰면 window 나옴 
 
 
 
