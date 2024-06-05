@@ -106,6 +106,29 @@
 
 
 
+    //변수 - 특징: 선언, 할당, 범위, 호이스팅(변수의 선언을 변수 범위 맨 위로 끌고 오는 현상)
+    //var 재선언 O, 재할당 O, 범위 function
+    var name = 'kim';
+    var name = 'jeong'; //재선언
+    name = 'lee'; //재할당
+    //let 재선언 X, 재할당 O, 범위 {}
+    //const 재선언 X, 재할당 X (변하지 않는 값), 범위 {}
+    //const로 object 만들었을 경우: 내부 값 변경해도 에러안남
+    //완전 수정 불가능한 오브젝트를 만들고 싶으면?
+    const person = {name : 'kim'};
+    Object.freeze(person); //person 이라는 Object를 수정 불가능하게 freeze
+
+    //전역변수 : 모든 곳에서 쓸 수 있는 변수
+    //window로 전역변수 만드는 방법
+    window.nameall='kim';
+    //window는 자바스크립트의 기본 함수를 담은 {오브젝트}
+    console.log(nameall);
+    console.log(window.nameall);
+
+    //함수 선언도 Hoisting 현상이 발생한다
+
+
+
     </script>
 
 
